@@ -1,5 +1,5 @@
-#ifndef ARQUIVO_H
-#define ARQUIVO_H
+#ifndef CONTROLE_ESTOQUE_HEADER
+#define CONTROLE_ESTOQUE_HEADER
 #define SIZE 100
 
 // Declaração da estrutura dos registros.
@@ -18,4 +18,4 @@ typedef struct{
     int numElemento;
 }LISTA;
 
-#endif // ARQUIVO_H
+#endif // CONTROLE_ESTOQUE_HEADER
