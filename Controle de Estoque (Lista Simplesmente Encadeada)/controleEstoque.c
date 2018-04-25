@@ -4,13 +4,13 @@
   -Inserir
   -Inicializar -> ok
   -Reinicializar
-  -Busca
+  -Busca -> ok
   -Excluir
   -Imprimir -> ok
   -Ordenação: Idade, Quantidade e País.
 
-  Primeira implementação em:
-  Lista Encadeada Estática */
+  Segunda implementação em:
+  Lista Simplesmente Encadeada */
 
 void inicializarLista(LISTA *l) {
     l->inicio=NULL;
@@ -23,5 +23,29 @@ void exibirLista(LISTA *l) {
         end = end->prox;
     }
 }
+
+PONT buscaSequencial(LISTA *l, int codigoBuscar) {
+    PONT pos = l->inicio;
+    while(pos!=NULL){
+        if(pos->reg.codProduto == codigoBuscar) return pos;
+        pos = pos->prox;
+    }
+    return NULL
+}
+
+PONT buscaSequencialOrdenada(LISTA *l, int codigoBuscar) {
+    PONT pos = l->inicio;
+    while(pos!=NULL && pos->reg.codProduto<codigoBuscar) pos->prox;
+    if(pos!=NULL && pos->reg.codProduto == codigoBuscar) return pos;
+    return NULL;
+}
+
+
+
+int excluirElementoLista(LISTA *l, int elementoExcluir) {
+    PONT ant, i;
+    i = busca
+}
+
 
 
