@@ -3,7 +3,7 @@
 /* checklist:
   -Inserir
   -Inicializar -> ok
-  -Reinicializar
+  -Reinicializar -> ok
   -Busca -> ok
   -Excluir
   -Imprimir -> ok
@@ -14,13 +14,17 @@
 
 void inicializarLista(LISTA *l) {
     l->inicio=NULL;
+    // Coloca o inicio como NULL pois ainda não existem elementos, consequentemente, não há um inicio da lista.
 }
 void exibirLista(LISTA *l) {
     PONT end = l->inicio;
+    // Cria-se um ponteiro auxiliar que aponta para o inicio da lista.
     printf("\n Lista: \" ");
     while(end!=NULL) {
+    // Enquanto esse ponteiro não for NULL, ainda existem elementos, então ele percorre a lista e mostra seus elementos.
         printf(" Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Código: %d \n Quantidade em estoque: %d \n",end->reg.nome,end->reg.precoVenda,end->reg.idade,end->reg.pais,end->reg.codProduto,end->reg.quantidadeEstoque);
         end = end->prox;
+        // Ele sempre passa para o próximo elemento, a partir do inicio.
     }
 }
 
@@ -47,5 +51,13 @@ int excluirElementoLista(LISTA *l, int elementoExcluir) {
     i = busca
 }
 
-
+void reinicializarLista(LISTA *l) {
+    PONT end = l->inicio;
+    while(end!=NULL){
+        PONT apagar = end;
+        end = end->prox;
+        free(apagar);
+    }
+    l->inicio = NULL;
+}
 
