@@ -1,6 +1,6 @@
 //Nome: Juan Carlos Cardoso de Oliveira
 //RA: 120130
-//Trabalho: Controle de Estoque (Lista Encadeada Estática e Lista Simplesmente Encadeada)
+//Trabalho: Controle de Estoque (Lista Simplesmente Encadeada)
 
 #include <stdio.h>
 #include <stdlib.h>
