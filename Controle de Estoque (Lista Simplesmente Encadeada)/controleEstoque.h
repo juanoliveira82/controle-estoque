@@ -26,4 +26,12 @@ typedef struct {
     PONT inicio;
 }LISTA;
 
+void inicializarLista(LISTA *l);
+void exibirLista(LISTA *l);
+PONT buscaSequencial(LISTA *l, int codigoBuscar);
+PONT buscaSequencialOrdenada(LISTA *l, int codigoBuscar);
+void inserirElementoOrdenadoIdade(LISTA *l, REGISTRO elemento);
+int excluirElementoLista(LISTA *l, int elementoExcluir);
+void reinicializarLista(LISTA *l);
+
 #endif // CONTROLE_ESTOQUE_HEADER

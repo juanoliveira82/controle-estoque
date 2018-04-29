@@ -1,17 +1,5 @@
 #include "controleEstoque.h"
 
-/* checklist:
-  -Inserir
-  -Inicializar -> ok
-  -Reinicializar -> ok
-  -Busca -> ok
-  -Excluir
-  -Imprimir -> ok
-  -Ordenação: Idade, Quantidade e País.
-
-  Segunda implementação em:
-  Lista Simplesmente Encadeada (Dinâmica) */
-
 void inicializarLista(LISTA *l) {
     l->inicio=NULL;
     // Coloca o inicio como NULL pois ainda não existem elementos, consequentemente, não há um inicio da lista.
@@ -20,7 +8,7 @@ void inicializarLista(LISTA *l) {
 void exibirLista(LISTA *l) {
     PONT end = l->inicio;
     // Cria-se um ponteiro auxiliar que aponta para o inicio da lista.
-    printf("\n Lista: \" ");
+    printf("\n Lista: \n");
     while(end!=NULL) {
     // Enquanto esse ponteiro não for NULL, ainda existem elementos, então ele percorre a lista e mostra seus elementos.
         printf(" Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Código: %d \n Quantidade em estoque: %d \n",end->reg.nome,end->reg.precoVenda,end->reg.idade,end->reg.pais,end->reg.codProduto,end->reg.quantidadeEstoque);
@@ -54,7 +42,7 @@ void inserirElementoOrdenadoIdade(LISTA *l, REGISTRO elemento) {
     // Aloca memória para inserção do novo registro.
 
     novoElemento->reg = elemento;
-    // O novo elemento é o elemento passado por parametro.
+    // O novo registro é o elemento passado por parametro.
 
     novoElemento->prox = NULL;
     // O próximo do novo elemento é nulo, pois ainda não se sabe qual é.
@@ -84,10 +72,42 @@ void inserirElementoOrdenadoIdade(LISTA *l, REGISTRO elemento) {
 }
 
 int excluirElementoLista(LISTA *l, int elementoExcluir) {
-    PONT anterior = NULL, atual = l->inicio;
 
-    if(anterior==NULL) {
-        l->inicio =
+    PONT anterior, atual;
+
+    anterior = NULL;
+    // ainda n tem anterior.
+
+    atual = l->inicio;
+    // Atual no começo da lista, para poder percorrer ela.
+
+    while(atual!=NULL && atual->reg.codProduto<elementoExcluir) {
+    /* Esse while serve para ir passando os elementos, até que o atual seja o mesmo que deseja-se excluir,
+    Ex.: ant=11 atual=12 novo=13
+    Passando os comandos abaixo, tornam-se:
+    Ex.: ant=12 atual=13 novo=13
+    Agora o atual é o mesmo que o novo, assim, ele sai do while e continua o processo de exclusão. */
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    if(atual==NULL){
+    // Caso onde o elemento que deseja-se ecluir não existe na lista.
+        printf("\n Esse ai n ta cadastrado pacero");
+    } else {
+    // Caso onde o elemento que deseja-se excluir existe na lista.
+        if(anterior==NULL) {
+        // Se o anterior for nulo, o elemento a ser excluído é o primeiro da lista.
+            l->inicio = atual->prox;
+            // Como o primeiro elemento foi excluído, o início da lista aponta para o próximo elemento.
+        } else {
+            anterior->prox = atual->prox;
+            /* Após a remoção do elemento atual (que é o que deseja-se excluir),
+            o próximo registro do elemento anterior, deve apontar para o próximo do elemento removido. */
+        }
+        free(atual);
+        // Libera memória do elemento excluído.
+        printf("\n O produto %d foi excluido.",elementoExcluir);
     }
 }
 

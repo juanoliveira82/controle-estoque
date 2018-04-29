@@ -6,6 +6,10 @@
 #include "controleEstoque.c" // O arquivo.c é onde ficam todos os códigos das funcões.
 
 int main() {
-    printf("Hello world!\n");
+    printf("\n\tEstoque de Whisky\n");
+
+
+
+
     return 0;
 }
