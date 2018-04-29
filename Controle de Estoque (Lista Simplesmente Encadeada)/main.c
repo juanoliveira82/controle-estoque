@@ -1,9 +1,9 @@
-//Nome: Juan Carlos Cardoso de Oliveira
-//RA: 120130
-//Trabalho: Controle de Estoque (Lista Simplesmente Encadeada)
+// Nome: Juan Carlos Cardoso de Oliveira
+// RA: 120130
+// Trabalho: Controle de Estoque (Lista Simplesmente Encadeada)
 
-#include "controleEstoque.h" // O arquivo.h È um header, e È onde ficam as declaraÁıes de estruturas e variaveis.
-#include "controleEstoque.c" // O arquivo.c È onde ficam todos os cÛdigos das funcıes.
+#include "controleEstoque.h" // O arquivo.h √© um header, nele ficam as declara√ß√µes de estruturas e vari√°veis.
+#include "controleEstoque.c" // O arquivo.c √© onde ficam todos os c√≥digos das func√µes.
 
 int main() {
     printf("Hello world!\n");
