@@ -3,15 +3,16 @@
 void inicializarLista(LISTA *l) {
     l->inicio=NULL;
     // Coloca o inicio como NULL pois ainda não existem elementos, consequentemente, não há um inicio da lista.
+    printf("\n Lista de estoque inicializada!\n");
 }
 
 void exibirLista(LISTA *l) {
     PONT end = l->inicio;
     // Cria-se um ponteiro auxiliar que aponta para o inicio da lista.
-    printf("\n Lista: \n");
+    printf("\n Estoque:\n\n");
     while(end!=NULL) {
     // Enquanto esse ponteiro não for NULL, ainda existem elementos, então ele percorre a lista e mostra seus elementos.
-        printf(" Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Código: %d \n Quantidade em estoque: %d \n",end->reg.nome,end->reg.precoVenda,end->reg.idade,end->reg.pais,end->reg.codProduto,end->reg.quantidadeEstoque);
+        printf(" Código: %d \n Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Quantidade em estoque: %d \n\n",end->reg.codProduto,end->reg.nome,end->reg.precoVenda,end->reg.idade,end->reg.pais,end->reg.quantidadeEstoque);
         end = end->prox;
         // Ele sempre passa para o próximo elemento, a partir do inicio.
     }
@@ -69,6 +70,7 @@ void inserirElementoOrdenadoIdade(LISTA *l, REGISTRO elemento) {
         anterior->prox = novoElemento;
         // Então o próximo registro do elemento anterior é o novo elemento que está sendo inserido.
     }
+    printf("\n Elemento inserido com sucesso!\n");
 }
 
 int excluirElementoLista(LISTA *l, int elementoExcluir) {

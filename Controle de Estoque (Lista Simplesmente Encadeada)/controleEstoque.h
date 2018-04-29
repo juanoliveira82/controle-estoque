@@ -6,12 +6,12 @@
 
 // Declaração da estrutura dos registros.
 typedef struct {
-    char nome[75];
+    int   codProduto;
+    char  nome[75];
     float precoVenda;
-    int idade;
-    char pais[50];
-    int codProduto;
-    int quantidadeEstoque;
+    int   idade;
+    char  pais[50];
+    int   quantidadeEstoque;
 }REGISTRO;
 
 typedef struct aux {
