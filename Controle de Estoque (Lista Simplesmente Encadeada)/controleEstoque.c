@@ -2,19 +2,24 @@
 
 void inicializarLista(LISTA *l) {
     l->inicio=NULL;
-    // Coloca o inicio como NULL pois ainda não existem elementos, consequentemente, não há um inicio da lista.
-    printf("\n Lista de estoque inicializada!\n");
+    // Coloca o inicio como NULL pois ainda não existem elementos, consequentemente, não há um início da lista.
 }
 
 void exibirLista(LISTA *l) {
     PONT end = l->inicio;
     // Cria-se um ponteiro auxiliar que aponta para o inicio da lista.
-    printf("\n Estoque:\n\n");
-    while(end!=NULL) {
-    // Enquanto esse ponteiro não for NULL, ainda existem elementos, então ele percorre a lista e mostra seus elementos.
-        printf(" Código: %d \n Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Quantidade em estoque: %d \n\n",end->reg.codProduto,end->reg.nome,end->reg.precoVenda,end->reg.idade,end->reg.pais,end->reg.quantidadeEstoque);
-        end = end->prox;
-        // Ele sempre passa para o próximo elemento, a partir do inicio.
+    if(end==NULL) {
+    // Verifica se existe algum elemento inserido na lista.
+        printf("\n Nenhum elemento inserido na lista.\n");
+        // Avisa ao usúario que a lista não possui nenhum elemento inserido.
+    } else {
+        printf("\n Estoque:\n\n");
+        while(end!=NULL) {
+        // Enquanto esse ponteiro não for NULL, ainda existem elementos, então ele percorre a lista e mostra seus elementos.
+            printf(" Código: %d \n Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Quantidade em estoque: %d \n\n",end->reg.codProduto,end->reg.nome,end->reg.precoVenda,end->reg.idade,end->reg.pais,end->reg.quantidadeEstoque);
+            end = end->prox;
+            // Ele sempre passa para o próximo elemento, a partir do inicio.
+        }
     }
 }
 
@@ -123,3 +128,6 @@ void reinicializarLista(LISTA *l) {
     l->inicio = NULL;
 }
 
+void limparTela() {
+    system("clear");
+}

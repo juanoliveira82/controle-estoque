@@ -33,5 +33,6 @@ PONT buscaSequencialOrdenada(LISTA *l, int codigoBuscar);
 void inserirElementoOrdenadoIdade(LISTA *l, REGISTRO elemento);
 int excluirElementoLista(LISTA *l, int elementoExcluir);
 void reinicializarLista(LISTA *l);
+void limparTela();
 
 #endif // CONTROLE_ESTOQUE_HEADER
