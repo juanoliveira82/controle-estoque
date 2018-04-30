@@ -1,3 +1,4 @@
+// Autor: Juan Carlos Cardoso de Oliveira.
 #ifndef CONTROLE_ESTOQUE_HEADER
 #define CONTROLE_ESTOQUE_HEADER
 #include <stdio.h>
@@ -28,10 +29,11 @@ typedef struct {
 
 void inicializarLista(LISTA *l);
 void exibirLista(LISTA *l);
-PONT buscaSequencial(LISTA *l, int codigoBuscar);
-PONT buscaSequencialOrdenada(LISTA *l, int codigoBuscar);
+void buscarProduto(LISTA *l, int codigoBuscar);
 void inserirElementoOrdenadoIdade(LISTA *l, REGISTRO elemento);
-int excluirElementoLista(LISTA *l, int elementoExcluir);
+void inserirElementoOrdenadoQuantidade(LISTA *l, REGISTRO elemento);
+void inserirElementoOrdenadoPais(LISTA *l, REGISTRO elemento);
+void excluirElementoLista(LISTA *l, int elementoExcluir);
 void reinicializarLista(LISTA *l);
 void limparTela();
 

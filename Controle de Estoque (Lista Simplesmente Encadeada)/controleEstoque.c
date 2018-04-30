@@ -1,3 +1,4 @@
+// Autor: Juan Carlos Cardoso de Oliveira.
 #include "controleEstoque.h"
 
 void inicializarLista(LISTA *l) {
@@ -23,49 +24,48 @@ void exibirLista(LISTA *l) {
     }
 }
 
-PONT buscaSequencial(LISTA *l, int codigoBuscar) {
-    PONT pos = l->inicio;
-    while(pos!=NULL){
-        if(pos->reg.codProduto == codigoBuscar) return pos;
-        pos = pos->prox;
+// Função para buscar produtos na lista.
+void buscarProduto(LISTA *l, int codigoBuscar) {
+    PONT auxiliar = l->inicio;
+    // Criação de um ponteiro auxiliar que aponta para o início da lista.
+    if(auxiliar==NULL){
+    // Caso onde existem registros na lista.
+        printf("\n Nao existem produtos cadastrados.\n");
+    } else {
+    // Caso onde não existem registros na lista.
+        while(auxiliar!=NULL && auxiliar->reg.codProduto<codigoBuscar) {
+        /* Enquanto o auxiliar não for nulo (existem elementos na lista),
+        e o código do produto auxiliar for menor que o código do produto que se busca,
+        deve-se passar para o próximo elemento. */
+            auxiliar=auxiliar->prox;
+            // Passa para o próximo elemento.
+        }
+        if(auxiliar!=NULL && auxiliar->reg.codProduto==codigoBuscar) {
+        // Encontrou o produto que se estava buscando, e o exibe.
+            printf("\n Código: %d \n Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Quantidade em estoque: %d \n\n",auxiliar->reg.codProduto,auxiliar->reg.nome,auxiliar->reg.precoVenda,auxiliar->reg.idade,auxiliar->reg.pais,auxiliar->reg.quantidadeEstoque);
+        } else {
+        // Não encontrou o produto e alerta o usúario.
+            printf("\n Produto não encontrado!\n");
+        }
     }
-    return NULL;
-}
-
-PONT buscaSequencialOrdenada(LISTA *l, int codigoBuscar) {
-    PONT pos = l->inicio;
-    while(pos!=NULL && pos->reg.codProduto<codigoBuscar) pos->prox;
-    if(pos!=NULL && pos->reg.codProduto == codigoBuscar) return pos;
-    return NULL;
 }
 
 // Função para inserir registros na lista, ordenando-os por idade.
 void inserirElementoOrdenadoIdade(LISTA *l, REGISTRO elemento) {
-
     PONT anterior = NULL, atual = NULL, novoElemento = NULL;
-
     novoElemento = (PONT) malloc(sizeof(ELEMENTO));
     // Aloca memória para inserção do novo registro.
-
     novoElemento->reg = elemento;
     // O novo registro é o elemento passado por parametro.
-
     novoElemento->prox = NULL;
     // O próximo do novo elemento é nulo, pois ainda não se sabe qual é.
-
     atual = l->inicio;
     // O atual aponta para o começo da lista.
-
     while(atual!=NULL && atual->reg.idade<elemento.idade) {
-    /* Esse while serve para ir passando os elementos, até que o atual seja o mesmo que está sendo inserido,
-    Ex.: ant=11 atual=12 novo=13
-    Passando os comandos abaixo, tornam-se:
-    Ex.: ant=12 atual=13 novo=13
-    Agora o atual é o mesmo que o novo, assim, ele sai do while e continua o processo de inserção. */
+    // Passa os elementos até que o atual seja o mesmo que está sendo inserido.
         anterior = atual;
         atual = atual->prox;
     }
-
     if(anterior==NULL) {
     // Se o anterior for nulo, ainda estamos no primeiro elemento. (Início da lista).
         l->inicio = novoElemento;
@@ -78,16 +78,68 @@ void inserirElementoOrdenadoIdade(LISTA *l, REGISTRO elemento) {
     printf("\n Elemento inserido com sucesso!\n");
 }
 
-int excluirElementoLista(LISTA *l, int elementoExcluir) {
+// Função para inserir registros na lista, ordenando-os por quantidade.
+void inserirElementoOrdenadoQuantidade(LISTA *l, REGISTRO elemento) {
+    PONT anterior = NULL, atual = NULL, novoElemento = NULL;
+    novoElemento = (PONT) malloc(sizeof(ELEMENTO));
+    // Aloca memória para inserção do novo registro.
+    novoElemento->reg = elemento;
+    // O novo registro é o elemento passado por parametro.
+    novoElemento->prox = NULL;
+    // O próximo do novo elemento é nulo, pois ainda não se sabe qual é.
+    atual = l->inicio;
+    // O atual aponta para o começo da lista.
+    while(atual!=NULL && atual->reg.quantidadeEstoque<elemento.quantidadeEstoque) {
+    // Passa os elementos até que o atual seja o mesmo que está sendo inserido.
+        anterior = atual;
+        atual = atual->prox;
+    }
+    if(anterior==NULL) {
+    // Se o anterior for nulo, ainda estamos no primeiro elemento. (Início da lista).
+        l->inicio = novoElemento;
+        // O início é o elemento que está sendo inserido, pois ele é o primeiro a ser inserido.
+    } else {
+    // Caso o anterior não seja nulo, já existem elementos inseridos.
+        anterior->prox = novoElemento;
+        // Então o próximo registro do elemento anterior é o novo elemento que está sendo inserido.
+    }
+    printf("\n Elemento inserido com sucesso!\n");
+}
 
+// Função para inserir registros na lista, ordenando-os por país.
+void inserirElementoOrdenadoPais(LISTA *l, REGISTRO elemento) {
+    PONT anterior = NULL, atual = NULL, novoElemento = NULL;
+    novoElemento = (PONT) malloc(sizeof(ELEMENTO));
+    // Aloca memória para inserção do novo registro.
+    novoElemento->reg = elemento;
+    // O novo registro é o elemento passado por parametro.
+    novoElemento->prox = NULL;
+    // O próximo do novo elemento é nulo, pois ainda não se sabe qual é.
+    atual = l->inicio;
+    // O atual aponta para o começo da lista.
+    while(atual!=NULL && strcmp(atual->reg.pais,elemento.pais)<0) {
+    // Passa os elementos até que o atual seja o mesmo que está sendo inserido.
+        anterior = atual;
+        atual = atual->prox;
+    }
+    if(anterior==NULL) {
+    // Se o anterior for nulo, ainda estamos no primeiro elemento. (Início da lista).
+        l->inicio = novoElemento;
+        // O início é o elemento que está sendo inserido, pois ele é o primeiro a ser inserido.
+    } else {
+    // Caso o anterior não seja nulo, já existem elementos inseridos.
+        anterior->prox = novoElemento;
+        // Então o próximo registro do elemento anterior é o novo elemento que está sendo inserido.
+    }
+    printf("\n Elemento inserido com sucesso!\n");
+}
+
+void excluirElementoLista(LISTA *l, int elementoExcluir) {
     PONT anterior, atual;
-
     anterior = NULL;
     // ainda n tem anterior.
-
     atual = l->inicio;
     // Atual no começo da lista, para poder percorrer ela.
-
     while(atual!=NULL && atual->reg.codProduto<elementoExcluir) {
     /* Esse while serve para ir passando os elementos, até que o atual seja o mesmo que deseja-se excluir,
     Ex.: ant=11 atual=12 novo=13
@@ -97,10 +149,9 @@ int excluirElementoLista(LISTA *l, int elementoExcluir) {
         anterior = atual;
         atual = atual->prox;
     }
-
     if(atual==NULL){
     // Caso onde o elemento que deseja-se ecluir não existe na lista.
-        printf("\n Esse ai n ta cadastrado pacero");
+        printf("\n O produto informado nao esta cadastrado.\n");
     } else {
     // Caso onde o elemento que deseja-se excluir existe na lista.
         if(anterior==NULL) {
@@ -114,13 +165,13 @@ int excluirElementoLista(LISTA *l, int elementoExcluir) {
         }
         free(atual);
         // Libera memória do elemento excluído.
-        printf("\n O produto %d foi excluido.",elementoExcluir);
+        printf("\n O produto %d foi excluido.\n",elementoExcluir);
     }
 }
 
 void reinicializarLista(LISTA *l) {
     PONT end = l->inicio;
-    while(end!=NULL){
+    while(end!=NULL) {
         PONT apagar = end;
         end = end->prox;
         free(apagar);
@@ -130,4 +181,5 @@ void reinicializarLista(LISTA *l) {
 
 void limparTela() {
     system("clear");
+    // Limpa a tela para melhor exibição do programa.
 }
