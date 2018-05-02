@@ -26,6 +26,7 @@ int main() {
     printf("\n [5] Buscar um elemento na lista");
     printf("\n [6] Reinicializar a lista");
     printf("\n [0] Sair\n\n");
+    // Menu do programa.
     scanf("%d",&opcao);
     // Lê a opção desejada pelo usuário.
     switch(opcao) {
