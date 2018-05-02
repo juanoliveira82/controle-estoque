@@ -28,6 +28,7 @@ int main() {
     printf("\n [5] Buscar um elemento na lista");
     printf("\n [6] Reinicializar a lista");
     printf("\n [0] Sair\n\n");
+    // Mostra um menu com opções de funcionamento do programa.
     scanf("%d",&opcao);
     // Lê a opção desejada pelo usuário.
 
@@ -35,15 +36,15 @@ int main() {
         case 0 :
             limparTela();
             printf("\n Obrigado por usar o programa!\n\n Autor: Juan Oliveira\n");
-            break;
+            break; // ok
         case 1 :
-            inicializarLista(&listaEstoque);
+            inicializarEstoque(&listaEstoque);
             limparTela();
             printf("\n Lista de estoque inicializada!\n");
-            goto iniciarPrograma;
+            goto iniciarPrograma; // ok
         case 2 :
             limparTela();
-            printf("\n Informe o código: ");
+            printf("\n Informe o codigo: ");
             scanf("%d",&cadCodProduto);
             printf("\n Informe o nome: ");
             scanf("%s",&cadNome);
@@ -73,7 +74,7 @@ int main() {
             switch(opcao) {
                 // As três opções inserem o elemento na lista e voltam ao menu principal.
                 case 1 :
-                    inserirElementoOrdenadoIdade(&listaEstoque,elemento);
+                    inserirProdutoOrdenadoIdade(&listaEstoque,elemento);
                     goto iniciarPrograma;
                 case 2 :
                     //inserirElementoOrdenadoQuantidade(&listaEstoque,elemento);
@@ -88,7 +89,7 @@ int main() {
             }
         case 3 :
             limparTela();
-            exibirLista(&listaEstoque);
+            exibirEstoque(&listaEstoque);
             goto iniciarPrograma;
         case 4 :
             printf("\n Qual produto deseja excluir ?  ");
@@ -101,17 +102,14 @@ int main() {
             buscarProduto(&listaEstoque, registroBuscar);
             goto iniciarPrograma;
         case 6 :
-            reiniciarLista(&listaEstoque);
+            reinicializarEstoque(&listaEstoque);
             limparTela();
             printf("\n Lista de estoque reinicializada!\n");
-            goto iniciarPrograma;
+            goto iniciarPrograma; // ok
         default :
             limparTela();
             printf("\n Opcao invalida!\n");
-            goto iniciarPrograma;
+            goto iniciarPrograma; // ok
     }
-
-
-
     return 0;
 }

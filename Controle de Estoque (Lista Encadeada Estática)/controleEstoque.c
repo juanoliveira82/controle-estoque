@@ -1,6 +1,6 @@
 #include "controleEstoque.h"
 
-void inicializarLista(LISTA *l) {
+void inicializarEstoque(LISTA *l) {
     int i;
     l->inicio = -1;
     // O inicio está apontando para '-1', pois ainda não há nenhum elemento na lista, então não existe um início.
@@ -13,13 +13,19 @@ void inicializarLista(LISTA *l) {
     l->A[SIZE-1].prox = -1;
 }
 
-void exibirLista(LISTA *l) {
+void exibirEstoque(LISTA *l) {
     int i;
-    if(l->inicio==NULL){
-        printf("nao tem elemento");
+    if(l->inicio==-1){
+    // Verifica se existe algum elemento inserido na lista.
+        printf("\n Nenhum elemento inserido na lista.\n");
+        // Avisa ao usúario que a lista não possui nenhum elemento inserido.
     } else {
-        for(i=l->inicio; i!=-1; i=l->A[i].prox) {
-            printf("[%d]=%d  ",i,l->A[i].codProduto);
+
+    for(i=l->inicio; i!=-1; i=l->A[i].prox) {
+
+    // encontra
+    printf("\n Código: %d \n Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Quantidade em estoque: %d \n\n",l->A[i].codProduto,l->A[i].nome,l->A[i].precoVenda,l->A[i].idade,l->A[i].pais,l->A[i].quantidadeEstoque);
+
         }
     }
 }
@@ -40,12 +46,14 @@ void buscarProduto(LISTA *l, int codigoBuscar) {
     }
 }
 
-int inserirElementoOrdenadoIdade(LISTA *l, REGISTRO reg) {
+void inserirProdutoOrdenadoIdade(LISTA *l, REGISTRO reg) {
     int ant = -1;
     int atual;
     int auxDisponivel = l->A[l->disponivel].prox;
 
-    if(l->disponivel == -1) return(-1);
+    if(l->disponivel == -1) {
+        printf("nao tem disponivel chefia");
+    }
 
     l->A[l->disponivel].idade=reg.idade;
 
@@ -64,7 +72,7 @@ int inserirElementoOrdenadoIdade(LISTA *l, REGISTRO reg) {
         l->A[l->disponivel].prox=atual;
     }
     l->disponivel=auxDisponivel;
-    return(1);
+    printf("inserido");
 }
 
 void excluirProduto(LISTA *l, int ch) {
@@ -93,8 +101,9 @@ void excluirProduto(LISTA *l, int ch) {
     } else printf("\n O elemento nao esta na lista");
 }
 
-void reiniciarLista(LISTA *l) {
-    inicializarLista(l);
+void reinicializarEstoque(LISTA *l) {
+    inicializarEstoque(l);
+    // Inicia a lista novamente.
 }
 
 void limparTela() {

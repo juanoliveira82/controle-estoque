@@ -19,18 +19,18 @@ typedef struct {
 
 // Declaração da lista de registros.
 typedef struct {
-    REGISTRO A[SIZE];
+    REGISTRO A[1];
     int disponivel;
     int inicio;
 }LISTA;
 
 
-void inicializarLista(LISTA *l);
-void exibirLista(LISTA *l);
+void inicializarEstoque(LISTA *l);
+void exibirEstoque(LISTA *l);
 void buscarProduto(LISTA *l, int codigoBuscar);
-int inserirElementoOrdenadoIdade(LISTA *l, REGISTRO reg);
+void inserirProdutoOrdenadoIdade(LISTA *l, REGISTRO reg);
 void excluirProduto(LISTA *l, int ch);
-void reiniciarLista(LISTA *l);
+void reinicializarEstoque(LISTA *l);
 void limparTela();
 
 #endif // CONTROLE_ESTOQUE_HEADER
