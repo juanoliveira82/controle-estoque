@@ -41,7 +41,7 @@ int main() {
             goto iniciarPrograma;
         case 2 :
             limparTela();
-            printf("\n Informe o código: ");
+            printf("\n Informe o codigo: ");
             scanf("%d",&cadCodProduto);
             printf("\n Informe o nome: ");
             scanf("%s",&cadNome);

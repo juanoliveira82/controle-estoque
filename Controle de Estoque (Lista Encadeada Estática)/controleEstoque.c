@@ -15,8 +15,12 @@ void inicializarLista(LISTA *l) {
 
 void exibirLista(LISTA *l) {
     int i;
-    for(i=l->inicio; i!=-1; i=l->A[i].prox) {
-        printf("[%d]=%d  ",i,l->A[i].codProduto);
+    if(l->inicio==NULL){
+        printf("nao tem elemento");
+    } else {
+        for(i=l->inicio; i!=-1; i=l->A[i].prox) {
+            printf("[%d]=%d  ",i,l->A[i].codProduto);
+        }
     }
 }
 
@@ -94,6 +98,11 @@ void reiniciarLista(LISTA *l) {
 }
 
 void limparTela() {
+    #ifdef __linux__
     system("clear");
-    // Limpa a tela para melhor exibição do programa.
+    // Detecta o sistema linux, e executa o comando de limpar o terminal.
+    #elif defined WIN32
+    system("cls");
+    // Detecta o sistema windows, e executa o comando de limpar o console.
+    #endif
 }

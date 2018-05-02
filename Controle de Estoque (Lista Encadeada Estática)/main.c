@@ -98,7 +98,7 @@ int main() {
         case 5 :
             printf("\n Qual produto deseja buscar ?  ");
             scanf("%d",&registroBuscar);
-            //buscarProduto(listaEstoque, registroBuscar);
+            buscarProduto(&listaEstoque, registroBuscar);
             goto iniciarPrograma;
         case 6 :
             reiniciarLista(&listaEstoque);

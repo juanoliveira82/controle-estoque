@@ -42,7 +42,7 @@ void buscarProduto(LISTA *l, int codigoBuscar) {
         }
         if(auxiliar!=NULL && auxiliar->reg.codProduto==codigoBuscar) {
         // Encontrou o produto que se estava buscando, e o exibe.
-            printf("\n Código: %d \n Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Quantidade em estoque: %d \n\n",auxiliar->reg.codProduto,auxiliar->reg.nome,auxiliar->reg.precoVenda,auxiliar->reg.idade,auxiliar->reg.pais,auxiliar->reg.quantidadeEstoque);
+            printf("\n Codigo: %d \n Nome: %s \n Preco Venda: %f \n Idade: %d \n Pais: %s \n Quantidade em estoque: %d \n\n",auxiliar->reg.codProduto,auxiliar->reg.nome,auxiliar->reg.precoVenda,auxiliar->reg.idade,auxiliar->reg.pais,auxiliar->reg.quantidadeEstoque);
         } else {
         // Não encontrou o produto e alerta o usúario.
             printf("\n Produto não encontrado!\n");
@@ -134,19 +134,20 @@ void inserirElementoOrdenadoPais(LISTA *l, REGISTRO elemento) {
     printf("\n Elemento inserido com sucesso!\n");
 }
 
-
-
-int excluirElementoLista(LISTA *l, int elementoExcluir) {
-    PONT ant, i;
-    i = busca
-}
-
-void reinicializarLista(LISTA *l) {
-    PONT end = l->inicio;
-    while(end!=NULL){
-        PONT apagar = end;
-        end = end->prox;
-        free(apagar);
+void excluirElementoLista(LISTA *l, int elementoExcluir) {
+    PONT anterior, atual;
+    anterior = NULL;
+    // ainda n tem anterior.
+    atual = l->inicio;
+    // Atual no começo da lista, para poder percorrer ela.
+    while(atual!=NULL && atual->reg.codProduto<elementoExcluir) {
+    /* Esse while serve para ir passando os elementos, até que o atual seja o mesmo que deseja-se excluir,
+    Ex.: ant=11 atual=12 novo=13
+    Passando os comandos abaixo, tornam-se:
+    Ex.: ant=12 atual=13 novo=13
+    Agora o atual é o mesmo que o novo, assim, ele sai do while e continua o processo de exclusão. */
+        anterior = atual;
+        atual = atual->prox;
     }
     if(atual==NULL){
     // Caso onde o elemento que deseja-se ecluir não existe na lista.
@@ -179,21 +180,11 @@ void reinicializarLista(LISTA *l) {
 }
 
 void limparTela() {
+    #ifdef __linux__
     system("clear");
-    // Limpa a tela para melhor exibição do programa.
+    // Detecta o sistema linux, e executa o comando de limpar o terminal.
+    #elif defined WIN32
+    system("cls");
+    // Detecta o sistema windows, e executa o comando de limpar o console.
+    #endif
 }
-
-void excluirElementoLista(LISTA *l, int elementoExcluir) {
-    PONT anterior, atual;
-    anterior = NULL;
-    // ainda n tem anterior.
-    atual = l->inicio;
-    // Atual no começo da lista, para poder percorrer ela.
-    while(atual!=NULL && atual->reg.codProduto<elementoExcluir) {
-    /* Esse while serve para ir passando os elementos, até que o atual seja o mesmo que deseja-se excluir,
-    Ex.: ant=11 atual=12 novo=13
-    Passando os comandos abaixo, tornam-se:
-    Ex.: ant=12 atual=13 novo=13
-    Agora o atual é o mesmo que o novo, assim, ele sai do while e continua o processo de exclusão. */
-        anterior = atual;
-        atual = atual->prox;
