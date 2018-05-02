@@ -44,7 +44,22 @@ PONT buscaSequencialOrdenada(LISTA *l, int codigoBuscar) {
     return NULL;
 }
 
+int inserirElementoOrdenado(LISTA *l, REGISTRO reg) {
+    int cod = reg.codProduto;
+    PONT ant, i;
 
+    if(i!=NULL) return -1;
+    i = (PONT) malloc(sizeof(ELEMENTO));
+    i->reg = reg;
+    if(ant==NULL) {
+        i->prox = l->inicio;
+        l->inicio = i;
+    } else {
+        i->prox = ant->prox;
+        ant->prox = i;
+    }
+    return 0;
+}
 
 int excluirElementoLista(LISTA *l, int elementoExcluir) {
     PONT ant, i;
