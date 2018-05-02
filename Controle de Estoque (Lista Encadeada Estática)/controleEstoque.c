@@ -1,9 +1,7 @@
-#include "encadeadaEstatica.h"
+#include "controleEstoque.h"
 
 void inicializarLista(LISTA *l) {
     int i;
-    l->numElementos = 0;
-    // O contador do número de elementos na lista está como 0 pois ainda não foi inserido nenhum elemento.
     l->inicio = -1;
     // O inicio está apontando para '-1', pois ainda não há nenhum elemento na lista, então não existe um início.
     l->disponivel = 0;
@@ -15,49 +13,48 @@ void inicializarLista(LISTA *l) {
     l->A[SIZE-1].prox = -1;
 }
 
-int tamanhoLista(LISTA *l) {
-    return(l->numElementos);
-    // Retorna a variavel que armazena o numero de elementos na lista.
-}
-
 void exibirLista(LISTA *l) {
     int i;
     for(i=l->inicio; i!=-1; i=l->A[i].prox) {
-        printf("[%d]=%d  ",i,l->A[i].chave);
+        printf("[%d]=%d  ",i,l->A[i].codProduto);
     }
 }
 
-int buscaSequencialOrdenada(LISTA *l; int ch) {
+void buscarProduto(LISTA *l, int codigoBuscar) {
     int i;
 
-    if(l->numElementos==-1) return(-1);
+    for(i=l->inicio; i>=0 && codigoBuscar>l->A[i].codProduto; i=l->A[i].prox);
 
-    for(i=l->inicio; i>=0 && ch>l->A[i].chave; i=l->A[i].prox);
 
-    if(i>=0 && ch==l->A[i].chave)   return(i);
-    return(-1);
+    if(i>=0 && codigoBuscar==l->A[i].codProduto){
+    // encontra
+    printf("\n Código: %d \n Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Quantidade em estoque: %d \n\n",l->A[i].codProduto,l->A[i].nome,l->A[i].precoVenda,l->A[i].idade,l->A[i].pais,l->A[i].quantidadeEstoque);
+
+    } else {
+    // n encontra
+    printf("n achou n");
+    }
 }
 
-int inserirElementoOrdenado(LISTA *l, REGISTRO reg) {
+int inserirElementoOrdenadoIdade(LISTA *l, REGISTRO reg) {
     int ant = -1;
     int atual;
     int auxDisponivel = l->A[l->disponivel].prox;
 
     if(l->disponivel == -1) return(-1);
 
-    l->A[l->disponivel].chave=reg.chave;
-    l->numElementos=l->numElementos+1;
+    l->A[l->disponivel].idade=reg.idade;
 
     atual = l->inicio;
 
-    while(atual>=0 && l->A[atual].chave < reg.chave) {
+    while(atual>=0 && l->A[atual].idade < reg.idade) {
         ant = atual;
         atual = l->A[atual].prox;
     }
 
     if(ant == -1) {
-        l->A[l->disponivel].prox=1->inicio;
-        l->inicio=1->disponivel;
+        l->A[l->disponivel].prox=l->inicio;
+        l->inicio=l->disponivel;
     } else {
         l->A[ant].prox=l->disponivel;
         l->A[l->disponivel].prox=atual;
@@ -66,7 +63,7 @@ int inserirElementoOrdenado(LISTA *l, REGISTRO reg) {
     return(1);
 }
 
-void excluirElemento(LISTA *l, int ch) {
+void excluirProduto(LISTA *l, int ch) {
     int ant = -1;
     int atual;
 
@@ -75,12 +72,12 @@ void excluirElemento(LISTA *l, int ch) {
         return;
     }
 
-    atual->l->inicio;
-    while(atual>=0 && l->A[atual].chave<ch) {
+    atual=l->inicio;
+    while(atual>=0 && l->A[atual].codProduto<ch) {
         ant = atual;
         atual = l->A[atual].prox;
     }
-    if(l->A[atual].chave == ch) {
+    if(l->A[atual].codProduto == ch) {
         if(ant == -1) {
             l->inicio = l->A[atual].prox;
         } else {
@@ -89,11 +86,14 @@ void excluirElemento(LISTA *l, int ch) {
         l->A[atual].prox = l->disponivel;
         l->disponivel = atual;
 
-        l->numElementos = l->numElementos-1;
-        // Após a exclusão, diminui 1 no contador de elementos da lista.
     } else printf("\n O elemento nao esta na lista");
 }
 
-void reiniciarlista(LISTA *l) {
+void reiniciarLista(LISTA *l) {
     inicializarLista(l);
+}
+
+void limparTela() {
+    system("clear");
+    // Limpa a tela para melhor exibição do programa.
 }

@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1525124065 source:/home/juan82/Documents/GitHub/controle-estoque/Controle de Estoque (Lista Simplesmente Encadeada)/main.c
+	"controleEstoque.h"
+	"controleEstoque.c"
+
+1525122636 /home/juan82/Documents/GitHub/controle-estoque/Controle de Estoque (Lista Simplesmente Encadeada)/controleEstoque.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1525124688 /home/juan82/Documents/GitHub/controle-estoque/Controle de Estoque (Lista Simplesmente Encadeada)/controleEstoque.c
+	"controleEstoque.h"
+
