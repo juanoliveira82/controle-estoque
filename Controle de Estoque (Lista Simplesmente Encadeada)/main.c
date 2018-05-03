@@ -1,4 +1,4 @@
-// Nome: Juan Carlos Cardoso de Oliveira
+﻿// Nome: Juan Carlos Cardoso de Oliveira
 // RA: 120130
 // Trabalho: Controle de Estoque (Lista Simplesmente Encadeada)
 
@@ -103,7 +103,7 @@ int main() {
         case 5 :
             reinicializarEstoque(&listaEstoque);
             limparTela();
-            printf("\n Lista de estoque reinicializada!\n");
+            printf("\n Lista de estoque reinicializada! \n");
             goto menuInicio;
         default :
             limparTela();
