@@ -43,19 +43,19 @@ int main() {
             return 0;
         case 1 :
             limparTela();
-            printf("\n Digite o código: ");
+            printf("\n Informe o código: ");
             scanf("%i", &elemento.codProduto);
-            printf("\n Digite o nome: ");
+            printf("\n Informe o nome: ");
             setbuf(stdin, NULL);
             fgets(elemento.nome, 75, stdin);
-            printf("\n Digite o preço: ");
+            printf("\n Informe o preço de venda: ");
             scanf("%f", &elemento.precoVenda);
-            printf("\n Digite a idade: ");
+            printf("\n Informe a idade: ");
             scanf("%i", &elemento.idade);
-            printf("\n Digite o país: ");
+            printf("\n Informe o país: ");
             setbuf(stdin, NULL);
             fgets(elemento.pais, 50, stdin);
-            printf("\n Digite a quantidade: ");
+            printf("\n Informe a quantidade em estoque: ");
             scanf("%i", &elemento.quantidadeEstoque);
             escolherOrdenacao:
             printf("\n Como deseja inserir o elemento na lista ?\n");

@@ -29,7 +29,7 @@ void inserirProdutoOrdenadoIdade(LISTA *l, REGISTRO reg) {
     int atual = l->inicio;
     if(l->disponivel == -1) {
     // Caso não exista uma posição disponível.
-        printf("\n Não existe posição disponível para inserção no estoque.\n");
+        printf("\n Nao existe posicao disponivel para insercao no estoque.\n");
         return;
     }
     while(atual!=-1 && l->A[atual].idade<reg.idade) {
@@ -60,7 +60,7 @@ void inserirProdutoOrdenadoPais(LISTA *l, REGISTRO reg) {
     int atual = l->inicio;
     if(l->disponivel == -1) {
     // Caso não exista uma posição disponível.
-        printf("\n Não existe posição disponível para inserção no estoque.\n");
+        printf("\n Nao existe posicao disponivel para insercao no estoque.\n");
         return;
     }
     while(atual!=-1 && strcmp(l->A[atual].pais,reg.pais)<0) {
@@ -92,7 +92,7 @@ void inserirProdutoOrdenadoQuantidade(LISTA *l, REGISTRO reg) {
     int atual = l->inicio;
     if(l->disponivel == -1) {
     // Caso não exista uma posição disponível.
-        printf("\n Não existe posição disponível para inserção no estoque.\n");
+        printf("\n Nao existe posicao disponivel para insercao no estoque.\n");
         return;
     }
     while(atual!=-1 && l->A[atual].quantidadeEstoque<reg.quantidadeEstoque) {
@@ -123,7 +123,7 @@ void excluirProduto(LISTA *l, int produtoExcluir) {
     int atual;
     if(l->disponivel == -1) {
     // Caso onde o produto que se deseja excluir, não é encontrado no estoque.
-        printf("\n Elemento nao esta na lista.\n");
+        printf("\n O elemento nao esta no estoque.\n");
         return;
     }
     atual=l->inicio;
@@ -148,11 +148,12 @@ void excluirProduto(LISTA *l, int produtoExcluir) {
     }
 }
 
+// Função para exibir os produtos do estoque.
 void exibirEstoque(LISTA *l) {
     int i;
     if(l->inicio==-1){
     // Verifica se existe algum elemento inserido na lista.
-        printf("\n Nenhum elemento inserido na lista.\n");
+        printf("\n Nenhum produto inserido no estoque.\n");
         // Avisa ao usúario que a lista não possui nenhum elemento inserido.
     } else {
     // Caso onde existem produtos no estoque.
@@ -164,6 +165,7 @@ void exibirEstoque(LISTA *l) {
     }
 }
 
+// Função para buscar produtos no estoque.
 void buscarProduto(LISTA *l, int codigoBuscar) {
     int i;
     for(i=l->inicio; i>=0 && codigoBuscar>l->A[i].codProduto; i=l->A[i].prox);
@@ -176,6 +178,7 @@ void buscarProduto(LISTA *l, int codigoBuscar) {
     }
 }
 
+// Função para reinicializar o estoque.
 void reinicializarEstoque(LISTA *l) {
     inicializarEstoque(l);
     // Inicia a lista novamente.
@@ -183,18 +186,18 @@ void reinicializarEstoque(LISTA *l) {
 
 void menuInicial() {
     printf("\n  O que deseja fazer?\n");
-    printf("\n [1] Inicializar a lista");
+    printf("\n [1] Inicializar o estoque");
     printf("\n [0] Sair\n\n");
     // Menu somente com as opções de iniciar a lista ou sair do programa.
 }
 
 void menuCompleto() {
     printf("\n  O que deseja fazer?\n");
-    printf("\n [1] Inserir um elemento na lista");
-    printf("\n [2] Exibir a lista");
-    printf("\n [3] Excluir um elemento na lista");
-    printf("\n [4] Buscar um elemento na lista");
-    printf("\n [5] Reinicializar a lista");
+    printf("\n [1] Inserir um elemento no estoque");
+    printf("\n [2] Exibir o estoque");
+    printf("\n [3] Excluir um elemento do estoque");
+    printf("\n [4] Buscar um elemento no estoque");
+    printf("\n [5] Reinicializar o estoque");
     printf("\n [0] Sair\n\n");
     // Menu completo com todas as opções do programa.
 }
