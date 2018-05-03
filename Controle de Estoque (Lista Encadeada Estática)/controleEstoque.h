@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 
 // Declaração da estrutura dos registros.
 typedef struct {
@@ -19,18 +20,23 @@ typedef struct {
 
 // Declaração da lista de registros.
 typedef struct {
-    REGISTRO A[1];
+    REGISTRO A[SIZE];
     int disponivel;
     int inicio;
 }LISTA;
 
-
+// Declaração das funções.
 void inicializarEstoque(LISTA *l);
+int  obterDisponivel(LISTA *l);
+void inserirProdutoOrdenadoIdade(LISTA *l, REGISTRO reg);
+void inserirProdutoOrdenadoPais(LISTA *l, REGISTRO reg);
+void inserirProdutoOrdenadoQuantidade(LISTA *l, REGISTRO reg);
+void excluirProduto(LISTA *l, int produtoExcluir);
 void exibirEstoque(LISTA *l);
 void buscarProduto(LISTA *l, int codigoBuscar);
-void inserirProdutoOrdenadoIdade(LISTA *l, REGISTRO reg);
-void excluirProduto(LISTA *l, int ch);
 void reinicializarEstoque(LISTA *l);
+void menuInicial();
+void menuCompleto();
 void limparTela();
 
 #endif // CONTROLE_ESTOQUE_HEADER
