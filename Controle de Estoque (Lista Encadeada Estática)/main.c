@@ -6,65 +6,59 @@
 #include "controleEstoque.c"
 
 int main() {
-    int opcao, registroExcluir, registroBuscar;
+    setlocale(LC_ALL, "Portuguese");
+    // Coloca o idioma como português para exibição de acentos.
+    int opcao=NULL, registroExcluir, registroBuscar;
     LISTA listaEstoque;
     REGISTRO elemento;
-
-    int   cadCodProduto;
-    char  cadNome[75];
-    float cadPrecoVenda;
-    int   cadIdade;
-    char  cadPais[50];
-    int   cadQuantidadeEstoque;
-    // Criação de variáveis locais para cadastro dos registros.
-
-    printf("\n\tControde de estoque de whisky\n");
-    iniciarPrograma:
-    printf("\n  O que deseja fazer?\n");
-    printf("\n [1] Inicializar a lista");
-    printf("\n [2] Inserir um elemento na lista");
-    printf("\n [3] Exibir a lista");
-    printf("\n [4] Excluir um elemento na lista");
-    printf("\n [5] Buscar um elemento na lista");
-    printf("\n [6] Reinicializar a lista");
-    printf("\n [0] Sair\n\n");
+    printf("\n\tControle de estoque de whisky\n");
+    menuInicio:
+    menuInicial();
+    // Mostra o menu inicial ao usúario.
     scanf("%d",&opcao);
     // Lê a opção desejada pelo usuário.
-
+    if(opcao==0){
+        limparTela();
+        printf("\n Obrigado por usar o programa!\n\n Autor: Juan Oliveira\n");
+        return 0;
+    } else if(opcao==1){
+        inicializarEstoque(&listaEstoque);
+        limparTela();
+        printf("\n Lista de estoque inicializada!\n");
+    } else {
+        limparTela();
+        printf("\n Opção inválida!\n");
+        goto menuInicio;
+        // Caso o usúario informe uma opção inválida, o programa o alerta e volta ao início do mesmo.
+    }
+    iniciarPrograma:
+    menuCompleto();
+    // Mostra um menu com opções de funcionamento do programa.
+    scanf("%d",&opcao);
+    // Lê a opção desejada pelo usuário.
     switch(opcao) {
         case 0 :
             limparTela();
             printf("\n Obrigado por usar o programa!\n\n Autor: Juan Oliveira\n");
-            break;
+            return 0;
         case 1 :
-            inicializarLista(&listaEstoque);
-            limparTela();
-            printf("\n Lista de estoque inicializada!\n");
-            goto iniciarPrograma;
-        case 2 :
             limparTela();
             printf("\n Informe o código: ");
-            scanf("%d",&cadCodProduto);
+            scanf("%i", &elemento.codProduto);
             printf("\n Informe o nome: ");
-            scanf("%s",&cadNome);
-            printf("\n Informe o preco de venda: ");
-            scanf("%f",&cadPrecoVenda);
+            setbuf(stdin, NULL);
+            fgets(elemento.nome, 75, stdin);
+            printf("\n Informe o preço de venda: ");
+            scanf("%f", &elemento.precoVenda);
             printf("\n Informe a idade: ");
-            scanf("%d",&cadIdade);
-            printf("\n Informe o pais: ");
-            scanf("%s",&cadPais);
+            scanf("%i", &elemento.idade);
+            printf("\n Informe o país: ");
+            setbuf(stdin, NULL);
+            fgets(elemento.pais, 50, stdin);
             printf("\n Informe a quantidade em estoque: ");
-            scanf("%d",&cadQuantidadeEstoque);
-            // Recebe todos os dados sobre o elemento que o usúario quer inserir em varaiveis locais.
-            elemento.codProduto = cadCodProduto;
-            strcpy (elemento.nome, cadNome);
-            elemento.precoVenda = cadPrecoVenda;
-            elemento.idade = cadIdade;
-            strcpy (elemento.pais, cadPais);
-            elemento.quantidadeEstoque = cadQuantidadeEstoque;
-            // Cria um elemento com todas as informações fornecidas pelo usuario.
+            scanf("%i", &elemento.quantidadeEstoque);
             escolherOrdenacao:
-            printf("\n Como deseja inserir o elemento '%s' na lista ?\n",&cadNome);
+            printf("\n Como deseja inserir o elemento na lista ?\n");
             printf("\n [1] Inserir elemento ordenando por idade");
             printf("\n [2] Inserir elemento ordenando por quantidade");
             printf("\n [3] Inserir elemento ordenando por pais\n\n");
@@ -73,45 +67,50 @@ int main() {
             switch(opcao) {
                 // As três opções inserem o elemento na lista e voltam ao menu principal.
                 case 1 :
-                    inserirElementoOrdenadoIdade(&listaEstoque,elemento);
+                    inserirProdutoOrdenadoIdade(&listaEstoque,elemento);
+                    limparTela();
+                    printf("\n Produto inserido com sucesso!\n");
                     goto iniciarPrograma;
                 case 2 :
-                    //inserirElementoOrdenadoQuantidade(&listaEstoque,elemento);
+                    inserirProdutoOrdenadoQuantidade(&listaEstoque,elemento);
+                    limparTela();
+                    printf("\n Produto inserido com sucesso!\n");
                     goto iniciarPrograma;
                 case 3 :
-                    //inserirElementoOrdenadoPais(&listaEstoque,elemento);
+                    inserirProdutoOrdenadoPais(&listaEstoque,elemento);
+                    limparTela();
+                    printf("\n Produto inserido com sucesso!\n");
                     goto iniciarPrograma;
                 default :
                     limparTela();
-                    printf("\n Opcao invalida! Escolha a forma de ordenacao corretamente.\n");
+                    printf("\n Opção inválida! Escolha a forma de ordenação corretamente.\n");
                     goto escolherOrdenacao;
             }
+        case 2 :
+            limparTela();
+            exibirEstoque(&listaEstoque);
+            goto iniciarPrograma;
         case 3 :
             limparTela();
-            exibirLista(&listaEstoque);
-            goto iniciarPrograma;
-        case 4 :
             printf("\n Qual produto deseja excluir ?  ");
             scanf("%d",&registroExcluir);
             excluirProduto(&listaEstoque,registroExcluir);
             goto iniciarPrograma;
-        case 5 :
+        case 4 :
+            limparTela();
             printf("\n Qual produto deseja buscar ?  ");
             scanf("%d",&registroBuscar);
-            //buscarProduto(listaEstoque, registroBuscar);
+            buscarProduto(&listaEstoque, registroBuscar);
             goto iniciarPrograma;
-        case 6 :
-            reiniciarLista(&listaEstoque);
+        case 5 :
+            reinicializarEstoque(&listaEstoque);
             limparTela();
             printf("\n Lista de estoque reinicializada!\n");
-            goto iniciarPrograma;
+            goto menuInicio;
         default :
             limparTela();
-            printf("\n Opcao invalida!\n");
+            printf("\n Opção invalida!\n");
             goto iniciarPrograma;
     }
-
-
-
     return 0;
 }

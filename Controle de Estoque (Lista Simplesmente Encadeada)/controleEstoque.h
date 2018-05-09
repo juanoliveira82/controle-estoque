@@ -27,14 +27,17 @@ typedef struct {
     PONT inicio;
 }LISTA;
 
-void inicializarLista(LISTA *l);
-void exibirLista(LISTA *l);
+// Declaração das funções.
+void inicializarEstoque(LISTA *l);
+void inserirProdutoOrdenadoIdade(LISTA *l, REGISTRO elemento);
+void inserirProdutoOrdenadoQuantidade(LISTA *l, REGISTRO elemento);
+void inserirProdutoOrdenadoPais(LISTA *l, REGISTRO elemento);
+void excluirProduto(LISTA *l, int elementoExcluir);
+void exibirEstoque(LISTA *l);
 void buscarProduto(LISTA *l, int codigoBuscar);
-void inserirElementoOrdenadoIdade(LISTA *l, REGISTRO elemento);
-void inserirElementoOrdenadoQuantidade(LISTA *l, REGISTRO elemento);
-void inserirElementoOrdenadoPais(LISTA *l, REGISTRO elemento);
-void excluirElementoLista(LISTA *l, int elementoExcluir);
-void reinicializarLista(LISTA *l);
+void reinicializarEstoque(LISTA *l);
+void menuInicial();
+void menuCompleto();
 void limparTela();
 
 #endif // CONTROLE_ESTOQUE_HEADER

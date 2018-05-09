@@ -1,57 +1,13 @@
 // Autor: Juan Carlos Cardoso de Oliveira.
 #include "controleEstoque.h"
 
-void inicializarLista(LISTA *l) {
+void inicializarEstoque(LISTA *l) {
     l->inicio=NULL;
     // Coloca o inicio como NULL pois ainda não existem elementos, consequentemente, não há um início da lista.
 }
 
-void exibirLista(LISTA *l) {
-    PONT end = l->inicio;
-    // Cria-se um ponteiro auxiliar que aponta para o inicio da lista.
-    if(end==NULL) {
-    // Verifica se existe algum elemento inserido na lista.
-        printf("\n Nenhum elemento inserido na lista.\n");
-        // Avisa ao usúario que a lista não possui nenhum elemento inserido.
-    } else {
-        printf("\n Estoque:\n\n");
-        while(end!=NULL) {
-        // Enquanto esse ponteiro não for NULL, ainda existem elementos, então ele percorre a lista e mostra seus elementos.
-            printf(" Código: %d \n Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Quantidade em estoque: %d \n\n",end->reg.codProduto,end->reg.nome,end->reg.precoVenda,end->reg.idade,end->reg.pais,end->reg.quantidadeEstoque);
-            end = end->prox;
-            // Ele sempre passa para o próximo elemento, a partir do inicio.
-        }
-    }
-}
-
-// Função para buscar produtos na lista.
-void buscarProduto(LISTA *l, int codigoBuscar) {
-    PONT auxiliar = l->inicio;
-    // Criação de um ponteiro auxiliar que aponta para o início da lista.
-    if(auxiliar==NULL){
-    // Caso onde existem registros na lista.
-        printf("\n Nao existem produtos cadastrados.\n");
-    } else {
-    // Caso onde não existem registros na lista.
-        while(auxiliar!=NULL && auxiliar->reg.codProduto<codigoBuscar) {
-        /* Enquanto o auxiliar não for nulo (existem elementos na lista),
-        e o código do produto auxiliar for menor que o código do produto que se busca,
-        deve-se passar para o próximo elemento. */
-            auxiliar=auxiliar->prox;
-            // Passa para o próximo elemento.
-        }
-        if(auxiliar!=NULL && auxiliar->reg.codProduto==codigoBuscar) {
-        // Encontrou o produto que se estava buscando, e o exibe.
-            printf("\n Código: %d \n Nome: %s \n Preço Venda: %f \n Idade: %d \n Pais: %s \n Quantidade em estoque: %d \n\n",auxiliar->reg.codProduto,auxiliar->reg.nome,auxiliar->reg.precoVenda,auxiliar->reg.idade,auxiliar->reg.pais,auxiliar->reg.quantidadeEstoque);
-        } else {
-        // Não encontrou o produto e alerta o usúario.
-            printf("\n Produto não encontrado!\n");
-        }
-    }
-}
-
 // Função para inserir registros na lista, ordenando-os por idade.
-void inserirElementoOrdenadoIdade(LISTA *l, REGISTRO elemento) {
+void inserirProdutoOrdenadoIdade(LISTA *l, REGISTRO elemento) {
     PONT anterior = NULL, atual = NULL, novoElemento = NULL;
     novoElemento = (PONT) malloc(sizeof(ELEMENTO));
     // Aloca memória para inserção do novo registro.
@@ -75,11 +31,10 @@ void inserirElementoOrdenadoIdade(LISTA *l, REGISTRO elemento) {
         anterior->prox = novoElemento;
         // Então o próximo registro do elemento anterior é o novo elemento que está sendo inserido.
     }
-    printf("\n Elemento inserido com sucesso!\n");
 }
 
 // Função para inserir registros na lista, ordenando-os por quantidade.
-void inserirElementoOrdenadoQuantidade(LISTA *l, REGISTRO elemento) {
+void inserirProdutoOrdenadoQuantidade(LISTA *l, REGISTRO elemento) {
     PONT anterior = NULL, atual = NULL, novoElemento = NULL;
     novoElemento = (PONT) malloc(sizeof(ELEMENTO));
     // Aloca memória para inserção do novo registro.
@@ -103,11 +58,10 @@ void inserirElementoOrdenadoQuantidade(LISTA *l, REGISTRO elemento) {
         anterior->prox = novoElemento;
         // Então o próximo registro do elemento anterior é o novo elemento que está sendo inserido.
     }
-    printf("\n Elemento inserido com sucesso!\n");
 }
 
 // Função para inserir registros na lista, ordenando-os por país.
-void inserirElementoOrdenadoPais(LISTA *l, REGISTRO elemento) {
+void inserirProdutoOrdenadoPais(LISTA *l, REGISTRO elemento) {
     PONT anterior = NULL, atual = NULL, novoElemento = NULL;
     novoElemento = (PONT) malloc(sizeof(ELEMENTO));
     // Aloca memória para inserção do novo registro.
@@ -131,10 +85,10 @@ void inserirElementoOrdenadoPais(LISTA *l, REGISTRO elemento) {
         anterior->prox = novoElemento;
         // Então o próximo registro do elemento anterior é o novo elemento que está sendo inserido.
     }
-    printf("\n Elemento inserido com sucesso!\n");
 }
 
-void excluirElementoLista(LISTA *l, int elementoExcluir) {
+// Função para excluir um produto do estoque.
+void excluirProduto(LISTA *l, int elementoExcluir) {
     PONT anterior, atual;
     anterior = NULL;
     // ainda n tem anterior.
@@ -169,7 +123,53 @@ void excluirElementoLista(LISTA *l, int elementoExcluir) {
     }
 }
 
-void reinicializarLista(LISTA *l) {
+// Função para exibir os produtos do estoque.
+void exibirEstoque(LISTA *l) {
+    PONT end = l->inicio;
+    // Cria-se um ponteiro auxiliar que aponta para o inicio da lista.
+    if(end==NULL) {
+    // Verifica se existe algum elemento inserido na lista.
+        printf("\n Nenhum elemento inserido no estoque.\n");
+        // Avisa ao usúario que a lista não possui nenhum elemento inserido.
+    } else {
+        printf("\n Estoque:\n\n");
+        while(end!=NULL) {
+        // Enquanto esse ponteiro não for NULL, ainda existem elementos, então ele percorre a lista e mostra seus elementos.
+            printf(" Codigo: %d \n\n Nome: %s \n Preco de venda: %f \n\n Idade: %d \n\n Pais: %s \n Quantidade em estoque: %d \n\n",end->reg.codProduto,end->reg.nome,end->reg.precoVenda,end->reg.idade,end->reg.pais,end->reg.quantidadeEstoque);
+            end = end->prox;
+            // Ele sempre passa para o próximo elemento, a partir do inicio.
+        }
+    }
+}
+
+// Função para buscar produtos no estoque.
+void buscarProduto(LISTA *l, int codigoBuscar) {
+    PONT auxiliar = l->inicio;
+    // Criação de um ponteiro auxiliar que aponta para o início da lista.
+    if(auxiliar==NULL){
+    // Caso onde existem registros na lista.
+        printf("\n Nao existem produtos cadastrados.\n");
+    } else {
+    // Caso onde não existem registros na lista.
+        while(auxiliar!=NULL && auxiliar->reg.codProduto<codigoBuscar) {
+        /* Enquanto o auxiliar não for nulo (existem elementos na lista),
+        e o código do produto auxiliar for menor que o código do produto que se busca,
+        deve-se passar para o próximo elemento. */
+            auxiliar=auxiliar->prox;
+            // Passa para o próximo elemento.
+        }
+        if(auxiliar!=NULL && auxiliar->reg.codProduto==codigoBuscar) {
+        // Encontrou o produto que se estava buscando, e o exibe.
+            printf("\n Codigo: %d \n\n Nome: %s \n Preco de venda: %f \n\n Idade: %d \n\n Pais: %s \n Quantidade em estoque: %d \n\n",auxiliar->reg.codProduto,auxiliar->reg.nome,auxiliar->reg.precoVenda,auxiliar->reg.idade,auxiliar->reg.pais,auxiliar->reg.quantidadeEstoque);
+        } else {
+        // Não encontrou o produto e alerta o usúario.
+            printf("\n Produto nao encontrado!\n");
+        }
+    }
+}
+
+// Função para reinicializar o estoque.
+void reinicializarEstoque(LISTA *l) {
     PONT end = l->inicio;
     while(end!=NULL) {
         PONT apagar = end;
@@ -179,7 +179,30 @@ void reinicializarLista(LISTA *l) {
     l->inicio = NULL;
 }
 
+void menuInicial() {
+    printf("\n  O que deseja fazer?\n");
+    printf("\n [1] Inicializar o estoque");
+    printf("\n [0] Sair\n\n");
+    // Menu somente com as opções de iniciar a lista ou sair do programa.
+}
+
+void menuCompleto() {
+    printf("\n  O que deseja fazer?\n");
+    printf("\n [1] Inserir um elemento no estoque");
+    printf("\n [2] Exibir o estoque");
+    printf("\n [3] Excluir um elemento do estoque");
+    printf("\n [4] Buscar um elemento no estoque");
+    printf("\n [5] Reinicializar o estoque");
+    printf("\n [0] Sair\n\n");
+    // Menu completo com todas as opções do programa.
+}
+
 void limparTela() {
+    #ifdef __linux__
     system("clear");
-    // Limpa a tela para melhor exibição do programa.
+    // Detecta o sistema linux, e executa o comando de limpar o terminal.
+    #elif defined WIN32
+    system("cls");
+    // Detecta o sistema windows, e executa o comando de limpar o console.
+    #endif
 }
