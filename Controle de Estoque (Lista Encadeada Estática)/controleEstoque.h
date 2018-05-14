@@ -1,4 +1,4 @@
-// Autor: Juan Carlos Cardoso de Oliveira.
+﻿// Autor: Juan Carlos Cardoso de Oliveira.
 #ifndef CONTROLE_ESTOQUE_HEADER
 #define CONTROLE_ESTOQUE_HEADER
 #define SIZE 50
@@ -16,14 +16,14 @@ typedef struct {
     int   idade;
     char  pais[50];
     int   quantidadeEstoque;
-}REGISTRO;
+} REGISTRO;
 
 // Declaração da lista de registros.
 typedef struct {
     REGISTRO A[SIZE];
     int disponivel;
     int inicio;
-}LISTA;
+} LISTA;
 
 // Declaração das funções.
 void inicializarEstoque(LISTA *l);

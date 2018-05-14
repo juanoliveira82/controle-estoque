@@ -13,19 +13,19 @@ typedef struct {
     int   idade;
     char  pais[50];
     int   quantidadeEstoque;
-}REGISTRO;
+} REGISTRO;
 
 typedef struct aux {
     REGISTRO reg;
     struct aux* prox;
-}ELEMENTO;
+} ELEMENTO;
 
 typedef ELEMENTO* PONT;
 
 // Declaração da lista de registros.
 typedef struct {
     PONT inicio;
-}LISTA;
+} LISTA;
 
 // Declaração das funções.
 void inicializarEstoque(LISTA *l);
