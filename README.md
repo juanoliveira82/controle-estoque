@@ -10,3 +10,7 @@ Funções implementadas na aplicação:
 - Busca por elementos na lista.
 - Exibe todos os elementos da lista.
 - Reinicializa a lista.
+
+## Autor
+
+[Juan Carlos Cardoso de Oliveira](https://github.com/juanoliveira82) - Estudante do curso de Ciência da Computação na Universidade Estadual do Norte do Paraná (UENP).
