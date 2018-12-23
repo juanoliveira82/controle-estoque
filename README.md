@@ -11,6 +11,8 @@ Funções implementadas na aplicação:
 - Exibe todos os elementos da lista.
 - Reinicializa a lista.
 
+Trabalho de Estrutura de Dados [UENP]
+
 ## Autor
 
 [Juan Carlos Cardoso de Oliveira](https://github.com/juanoliveira82) - Estudante do curso de Ciência da Computação na Universidade Estadual do Norte do Paraná (UENP).
