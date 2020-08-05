@@ -1,6 +1,6 @@
 ﻿## Controle de Estoque (Lista Encadeada Estática e Lista Simplesmente Encadeada)
 
-Aplicação para controle de estoque, desenvolvida em linguagem C, utuilizando as estruturas de dados lista encadeada estática e lista simplesmente encadeada.
+Aplicação para controle de estoque, desenvolvida em linguagem C, utilizando as estruturas de dados lista encadeada estática e lista simplesmente encadeada.
 
 Funções implementadas na aplicação:
 
@@ -11,7 +11,7 @@ Funções implementadas na aplicação:
 - Exibe todos os elementos da lista.
 - Reinicializa a lista.
 
-Trabalho de Estrutura de Dados [UENP]
+Trabalho da disciplina de Estrutura de Dados [UENP]
 
 ## Autor
 
